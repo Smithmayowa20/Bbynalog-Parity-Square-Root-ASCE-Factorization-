@@ -4,14 +4,14 @@ by ALLI-SMITH MAYOWA OLAJIDE
 
 
 
-ABSTRACT
+## ABSTRACT
 In this paper we implement Parity, Square root and Alli-Smith Expression(A.S.E) systems – for polynomial factorization of a semi-prime number into its component prime numbers, we make use of easily summable/integratable multi-variable polynomial equations to achieve this objective. The time complexity for this new method to find a prime factor of a co-prime number is O(log n), We also utilize this method to solve for integer solutions to several Diophantine Equations.
 
 
 
 
 
-OUTLINE:
+### OUTLINE:
 1). Introduction
 2). Parity Factorization
 3). Alli-Smith Continous Expression Factorization(A.S.C.E)
@@ -21,13 +21,11 @@ OUTLINE:
 7). Acknowledgement
 
 
+<br>
+<br>
+<br>
 
-
-INTRODUCTION
-
-
-
-
+## INTRODUCTION
 
 
 
@@ -54,7 +52,13 @@ INTRODUCTION
 
 
 
-PARITY FACTORIZATION
+<br>
+<br>
+<br>
+
+
+
+## PARITY FACTORIZATION
 
 
 M = 2^(f (x y - d))
@@ -79,15 +83,12 @@ Sum[M,{x,2,M},{y,M + 1,d}] = Sum[2^(N())/(2^(f y) - 1),{y,M+1,d}]
 
 
 
+<br>
+<br>
+<br>
 
 
-ALLI-SMITH CONTINOUS EXPRESSION FACTORIZATION(A.S.C.E)
-
-
-
-
-
-
+## ALLI-SMITH CONTINOUS EXPRESSION FACTORIZATION(A.S.C.E)
 
 
 
@@ -112,7 +113,15 @@ ALLI-SMITH CONTINOUS EXPRESSION FACTORIZATION(A.S.C.E)
 
 
 
-SQUARE ROOT METHOD
+
+
+
+<br>
+<br>
+<br>
+
+
+## SQUARE ROOT METHOD
 
 
 Let Expression_1 = Sqrt[ (f (x y – d)^2)^2 + 1],
@@ -140,9 +149,11 @@ S.R.M is the total number of integer factor multiplicative combinations (x * y) 
 S.R.M/2 is the total number of unique integer factor multiplicative combinations (x * y = y * x) that equal d.
 
 
+<br>
+<br>
+<br>
 
-
-LOGARITHMIC FUNCTION METHOD
+## LOGARITHMIC FUNCTION METHOD
 
 
 Let Expression 1 = Log[ f (x y - d)^2 + 2]
@@ -167,16 +178,12 @@ because
 Log[(x=Inf) + 2] - Log[(x=Inf) + 3]) = 0
 
 
+<br>
+<br>
+<br>
 
 
-
-CONCLUSION
-
-
-
-
-
-
+## CONCLUSION
 
 
 
@@ -201,5 +208,13 @@ CONCLUSION
 
 
 
-ACKNOWLEDGEMENT
+
+
+
+
+<br>
+<br>
+<br>
+
+## ACKNOWLEDGEMENT
 I would like to thank, appreciate, revere, and worship Lord God Almighty, for helping me with the knowledge and guidance for this research paper. Without whom I could not even lift a pen to paper, thoughtless of forming and expressing my thoughts via words.
