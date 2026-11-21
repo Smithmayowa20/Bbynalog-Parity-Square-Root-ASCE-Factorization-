@@ -92,6 +92,36 @@ Sum[M,{x,2,M},{y,M + 1,d}] = Sum[2^(N())/(2^(f y) - 1),{y,M+1,d}]
 
 
 
+M = E^-(5 * 10^6 F(x))^2
+‎
+
+‎Let F(x) is the sum of 6 filter sine sums;
+‎
+
+‎F1(x) + F2(x) + F3(x) + F4(x) + F5(x) + F6(x)
+‎
+
+‎Where;
+‎
+
+‎F1(x) = Sum[Sin^2[Pi 10^k x^(1/4)],{k,0,442}]
+‎
+‎F2(x) = Sum[Sin^2[Pi 10^k x^(2/4)],{k,0,288}]
+‎
+‎F3(x) = Sum[Sin^2[Pi 10^k x^(3/4)],{k,0,138}]
+‎
+‎F4(x) = Sum[Sin^2[Pi 10^k d/x^(1/4)],{k,0,438}]
+‎
+‎F5(x) = Sum[Sin^2[Pi 10^k d^2/x^(2/4)],{k,0,288}]
+‎
+‎F6(x) = Sum[Sin^2[Pi 10^k d^3/x^(3/4)],{k,0,138}]
+‎
+‎and d is a 300 digit semi-prime number.
+‎
+
+‎Sum[M,{x,10^600,10^604}]
+
+
 
 
 
