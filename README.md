@@ -129,186 +129,310 @@ Cosindering the filter F(x), the number of x from 10^600 to 10^604 that have val
 <br>
 
 
-We have
 
-\[
-F(x)=F_1+\cdots+F_6,
-\]
 
-with
+Consider the unnormalized six-filter function
 
-\[
-F_1(x)=\sum_{k=0}^{442}\sin^2(\pi10^kx^{1/4}).
-\]
+[
+F(x)=F_1(x)+F_2(x)+F_3(x)+F_4(x)+F_5(x)+F_6(x),
+]
 
-Since every term is nonnegative,
+where
 
-\[
+[
+F_1(x)=\sum_{k=0}^{442}\sin^2\left(\pi 10^k x^{1/4}\right),
+]
+
+and the other five filters are nonnegative as well.
+
+We consider integer x in
+
+[
+10^{600}\le x\le10^{604}.
+]
+
+1. The condition F(x)<10^{-5}
+
+Since every term in every filter is nonnegative,
+
+[
 F(x)<10^{-5}
-\quad\Longrightarrow\quad
+]
+
+implies in particular
+
+[
 F_1(x)<10^{-5}.
-\]
+]
 
-Therefore every individual term satisfies
+Because F_1 is a sum of nonnegative terms, every individual term must satisfy
 
-\[
-\sin^2(\pi10^{442}x^{1/4})<10^{-5}.
-\]
+[
+\sin^2\left(\pi10^{442}x^{1/4}\right)<10^{-5}.
+]
+
+Therefore
+
+[
+\left|\sin\left(\pi10^{442}x^{1/4}\right)\right|
+<10^{-5/2}.
+]
+
+Define
+
+[
+\epsilon
+
+\frac{\arcsin(10^{-5/2})}{\pi}.
+]
+
+Numerically,
+
+[
+\boxed{
+\epsilon
+
+1.0065859197\times10^{-3}.
+}
+]
 
 Hence
 
-\[
-\left|\sin(\pi10^{442}x^{1/4})\right|<10^{-5/2}.
-\]
+[
+\left|10^{442}x^{1/4}\right|<\epsilon,
+]
 
-Let
+where |y| denotes the distance from y to the nearest integer.
 
-\[
-\epsilon
-=
-\frac{\arcsin(10^{-5/2})}{\pi}
-=
-1.0065859197\times10^{-3}.
-\]
+Dividing by 10^{442},
 
-Then
-
-\[
+[
 \boxed{
-\left\|10^{442}x^{1/4}\right\|<\epsilon
-}
-\]
-
-and therefore
-
-\[
-\boxed{
-\left\|x^{1/4}\right\|
+\left|x^{1/4}\right|
 <
 1.0065859197\times10^{-445}.
 }
-\]
+]
 
-Now write
+---
 
-\[
+2. x must lie extremely close to a fourth power
+
+Write
+
+[
 x^{1/4}=n+\delta,
-\qquad |\delta|<1.0065859197\times10^{-445}.
-\]
+]
+
+where n is an integer and
+
+[
+|\delta|
+<
+1.0065859197\times10^{-445}.
+]
 
 Then
 
-\[
+[
 x=(n+\delta)^4.
-\]
+]
 
-For small \(\delta\),
+Expanding,
 
-\[
-(n+\delta)^4-n^4
-=
-4n^3\delta+6n^2\delta^2+4n\delta^3+\delta^4.
-\]
+[
+(n+\delta)^4
 
-The relevant \(n\)-range is
+n^4+4n^3\delta+6n^2\delta^2
++4n\delta^3+\delta^4.
+]
 
-\[
-10^{150}\le n\le10^{151}.
-\]
+Thus
 
-Using the largest \(n=10^{151}\), the leading half-width is
+[
+|x-n^4|
+\le
+4n^3|\delta|
++6n^2|\delta|^2
++4n|\delta|^3
++|\delta|^4.
+]
 
-\[
+The relevant fourth-power centers satisfy
+
+[
+10^{150}\le n\le10^{151},
+]
+
+because
+
+[
+10^{600}\le n^4\le10^{604}.
+]
+
+The dominant term in the width is therefore
+
+[
 R
-=
+
 4(10^{151})^3
-(1.0065859197\times10^{-445}),
-\]
+(1.0065859197\times10^{-445}).
+]
 
-giving
+Hence
 
-\[
+[
 \boxed{
 R\approx4.026343679\times10^8.
 }
-\]
+]
 
-Thus, around each fourth power \(n^4\), the \(F_1\) condition permits at most approximately
+So the F_1 condition alone permits approximately
 
-\[
+[
 2R+1
-\approx
-8.05268736\times10^8
-\]
+]
 
-integer \(x\)'s.
+integer values of x around each admissible fourth-power center.
 
-But the six filters drastically reduce the centers
+Therefore
 
-The reciprocal filter
+[
+\boxed{
+2R+1
+\approx8.05268736\times10^8.
+}
+]
 
-\[
+Thus the 10^8 figure is the approximate number of possible integer x's in the F_1-neighborhood of one fourth-power center.
+
+---
+
+3. The reciprocal filter restricts the fourth-power centers
+
+The fourth filter is
+
+[
 F_4(x)
-=
+
 \sum_{k=0}^{438}
-\sin^2\left(\pi10^{k+300}x^{-1/4}\right)
-\]
+\sin^2\left(
+\pi10^{k+300}x^{-1/4}
+\right).
+]
 
-forces \(x^{1/4}\) to be extremely close to a divisor of \(10^{300}\).
+For x^{1/4}\approx n, this becomes a condition on
 
-For \(d=10^{300}\),
+[
+\frac{10^{300}}{n}.
+]
 
-\[
-n\mid10^{300}
-\]
+The extremely small tolerance enforced by F_4 forces n to divide 10^{300}.
+
+Therefore the relevant centers satisfy
+
+[
+n\mid10^{300},
+]
+
+with
+
+[
+10^{150}\le n\le10^{151}.
+]
+
+Since
+
+[
+10^{300}=2^{300}5^{300},
+]
+
+every positive divisor has the form
+
+[
+n=2^a5^b,
+\qquad
+0\le a,b\le300.
+]
+
+Counting those satisfying
+
+[
+10^{150}\le2^a5^b\le10^{151}
+]
+
+gives exactly
+
+[
+\boxed{432}
+]
+
+admissible divisor centers.
+
+---
+
+4. Total candidate upper bound
+
+For each of the 432 admissible centers, the F_1 condition permits at most approximately
+
+[
+8.05268736\times10^8
+]
+
+integer values of x.
+
+Consequently,
+
+[
+N
+<
+432(8.05268736\times10^8).
+]
+
+Therefore
+
+[
+\boxed{
+N<3.47876\times10^{11}.
+}
+]
+
+This is a candidate upper bound obtained from the F_1 neighborhood width and the 432 possible divisor centers.
+
+---
+
+5. Important distinction
+
+The quantity
+
+[
+\boxed{10^8}
+]
+
+is not the final number of integers x satisfying all six filters.
+
+It is approximately the number of integer x's allowed by the F_1 condition around one admissible fourth-power center.
+
+The resulting bounds are therefore
+
+[
+\boxed{
+\text{per-center width}\approx8.05\times10^8
+}
+]
 
 and
 
-\[
-10^{150}\le n\le10^{151}.
-\]
+[
+\boxed{
+\text{432 centers}\quad\Longrightarrow\quad
+N<3.48\times10^{11}.
+}
+]
 
-There are exactly
+The other filters F_2,F_3,F_5,F_6 impose additional restrictions, so the actual number of six-filter survivors can be substantially smaller.
 
-\[
-\boxed{432}
-\]
-
-such divisors.
-
-Therefore the crude \(F_1\)-based candidate bound is
-
-\[
-432(2R+1),
-\]
-
-so
-
-\[
-432(8.05268736\times10^8)
-\approx
-\boxed{3.47876\times10^{11}}.
-\]
-
-So I want to correct one thing from the earlier discussion:
-
-\[
-\boxed{\text{\(10^8\) is the approximate width per fourth-power center, not the total six-filter count.}}
-\]
-
-The rigorous statement we established is approximately
-
-\[
-\boxed{8.05\times10^8\text{ possible integer }x\text{ per admissible divisor center}}
-\]
-
-and, with 432 divisor centers,
-
-\[
-\boxed{N_{\rm candidates}<3.48\times10^{11}}.
-\]
-
-The actual number satisfying all six filters and \(F(x)<10^{-5}\) can be substantially smaller. The \(10^8\) figure by itself is therefore a local neighborhood upper bound, not the final survivor count.
+Thus 3.48\times10^{11} should be regarded as a conservative candidate upper bound, not as the exact count.
 
 
 ‎Sum[M,{x,10^600,10^604}]
