@@ -98,370 +98,328 @@ M = Sin[(x + 1)/2 + Pi/2] E^-(5 * 10^6 F(x))^2
 ‎Let F(x) is the sum of 6 filter sine sums;
 ‎<br>
 
-‎F1(x) + F2(x) + F3(x) + F4(x) + F5(x) + F6(x)
+‎F1[x] + F2[x] + F3[x] + F4[x] + F5[x] + F6[x]
 ‎<br>
 
 ‎Where;
 ‎<br>
 
-‎F1(x) = Sum[Sin^2[Pi 10^k x^(1/4)],{k,0,442}]
+‎F1[x] = Sum[Sin^2[Pi 10^k x^(1/4)],{k,0,442}]
 ‎<br>
 
-‎F2(x) = Sum[Sin^2[Pi 10^k x^(2/4)],{k,0,288}]
+‎F2[x] = Sum[Sin^2[Pi 10^k x^(2/4)],{k,0,288}]
 ‎‎<br>
 
-‎F3(x) = Sum[Sin^2[Pi 10^k x^(3/4)],{k,0,138}]
+‎F3[x] = Sum[Sin^2[Pi 10^k x^(3/4)],{k,0,138}]
 ‎‎<br>
 
-‎F4(x) = Sum[Sin^2[Pi 10^k d/x^(1/4)],{k,0,438}]
+‎F4[x] = Sum[Sin^2[Pi 10^k d/x^(1/4)],{k,0,438}]
 ‎‎<br>
 
-‎F5(x) = Sum[Sin^2[Pi 10^k d^2/x^(2/4)],{k,0,288}]
+‎F5[x] = Sum[Sin^2[Pi 10^k d^2/x^(2/4)],{k,0,288}]
 ‎‎<br>
 
-‎F6(x) = Sum[Sin^2[Pi 10^k d^3/x^(3/4)],{k,0,138}]
+‎F6[x] = Sum[Sin^2[Pi 10^k d^3/x^(3/4)],{k,0,138}]
 ‎‎<br>
 
 ‎and d is a 300 digit semi-prime number.
 ‎‎<br>
 
-Cosindering the filter F(x), the number of x from 10^600 to 10^604 that have values lesser than 10^(-5) can be calculated thus;
+Cosindering the filter F(x), the number of x from 10^600 to 10^604 that have values lesser than 10^(-5) for a random 300 digit d can be calculated thus;
+<br>
+<br>
 <br>
 
 
 
+1. Consequence of "F[x] < 10^-5"
 
-Consider the unnormalized six-filter function
+If
 
-[
-F(x)=F_1(x)+F_2(x)+F_3(x)+F_4(x)+F_5(x)+F_6(x),
-]
+F[x] < 10^-5
 
-where
+then necessarily
 
-[
-F_1(x)=\sum_{k=0}^{442}\sin^2\left(\pi 10^k x^{1/4}\right),
-]
+F1[x] < 10^-5.
 
-and the other five filters are nonnegative as well.
+Since every term in "F1" is nonnegative,
 
-We consider integer x in
+Sin[Pi*10^442*x^(1/4)]^2 < 10^-5
 
-[
-10^{600}\le x\le10^{604}.
-]
+and hence
 
-1. The condition F(x)<10^{-5}
-
-Since every term in every filter is nonnegative,
-
-[
-F(x)<10^{-5}
-]
-
-implies in particular
-
-[
-F_1(x)<10^{-5}.
-]
-
-Because F_1 is a sum of nonnegative terms, every individual term must satisfy
-
-[
-\sin^2\left(\pi10^{442}x^{1/4}\right)<10^{-5}.
-]
-
-Therefore
-
-[
-\left|\sin\left(\pi10^{442}x^{1/4}\right)\right|
-<10^{-5/2}.
-]
+Abs[Sin[Pi*10^442*x^(1/4)]] < 10^(-5/2).
 
 Define
 
-[
-\epsilon
-
-\frac{\arcsin(10^{-5/2})}{\pi}.
-]
-
-Numerically,
-
-[
-\boxed{
-\epsilon
-
-1.0065859197\times10^{-3}.
-}
-]
-
-Hence
-
-[
-\left|10^{442}x^{1/4}\right|<\epsilon,
-]
-
-where |y| denotes the distance from y to the nearest integer.
-
-Dividing by 10^{442},
-
-[
-\boxed{
-\left|x^{1/4}\right|
-<
-1.0065859197\times10^{-445}.
-}
-]
-
----
-
-2. x must lie extremely close to a fourth power
-
-Write
-
-[
-x^{1/4}=n+\delta,
-]
-
-where n is an integer and
-
-[
-|\delta|
-<
-1.0065859197\times10^{-445}.
-]
+epsilon = ArcSin[10^(-5/2)]/Pi;
 
 Then
 
-[
-x=(n+\delta)^4.
-]
+N[epsilon, 30]
 
-Expanding,
+gives
 
-[
-(n+\delta)^4
+0.00100658591973769
 
-n^4+4n^3\delta+6n^2\delta^2
-+4n\delta^3+\delta^4.
-]
+Therefore
+
+Abs[
+    10^442*x^(1/4) -
+    Round[10^442*x^(1/4)]
+] < epsilon
+
+and consequently, for some integer "n",
+
+Abs[x^(1/4) - n] < epsilon/10^442;
+
+Define
+
+deltaMax = epsilon/10^442;
+
+so that
+
+N[deltaMax, 20]
+
+gives
+
+1.00658591973769*10^-445
 
 Thus
 
-[
-|x-n^4|
-\le
-4n^3|\delta|
-+6n^2|\delta|^2
-+4n|\delta|^3
-+|\delta|^4.
-]
-
-The relevant fourth-power centers satisfy
-
-[
-10^{150}\le n\le10^{151},
-]
-
-because
-
-[
-10^{600}\le n^4\le10^{604}.
-]
-
-The dominant term in the width is therefore
-
-[
-R
-
-4(10^{151})^3
-(1.0065859197\times10^{-445}).
-]
-
-Hence
-
-[
-\boxed{
-R\approx4.026343679\times10^8.
-}
-]
-
-So the F_1 condition alone permits approximately
-
-[
-2R+1
-]
-
-integer values of x around each admissible fourth-power center.
-
-Therefore
-
-[
-\boxed{
-2R+1
-\approx8.05268736\times10^8.
-}
-]
-
-Thus the 10^8 figure is the approximate number of possible integer x's in the F_1-neighborhood of one fourth-power center.
+Abs[x^(1/4) - n] <
+    1.00658591973769*10^-445.
 
 ---
 
-3. The reciprocal filter restricts the fourth-power centers
+2. Convert the fourth-root condition into an x-width
 
-The fourth filter is
+Write
 
-[
-F_4(x)
-
-\sum_{k=0}^{438}
-\sin^2\left(
-\pi10^{k+300}x^{-1/4}
-\right).
-]
-
-For x^{1/4}\approx n, this becomes a condition on
-
-[
-\frac{10^{300}}{n}.
-]
-
-The extremely small tolerance enforced by F_4 forces n to divide 10^{300}.
-
-Therefore the relevant centers satisfy
-
-[
-n\mid10^{300},
-]
+x^(1/4) = n + delta
 
 with
 
-[
-10^{150}\le n\le10^{151}.
-]
+Abs[delta] < deltaMax;
 
-Since
+Then
 
-[
-10^{300}=2^{300}5^{300},
-]
-
-every positive divisor has the form
-
-[
-n=2^a5^b,
-\qquad
-0\le a,b\le300.
-]
-
-Counting those satisfying
-
-[
-10^{150}\le2^a5^b\le10^{151}
-]
-
-gives exactly
-
-[
-\boxed{432}
-]
-
-admissible divisor centers.
-
----
-
-4. Total candidate upper bound
-
-For each of the 432 admissible centers, the F_1 condition permits at most approximately
-
-[
-8.05268736\times10^8
-]
-
-integer values of x.
-
-Consequently,
-
-[
-N
-<
-432(8.05268736\times10^8).
-]
-
-Therefore
-
-[
-\boxed{
-N<3.47876\times10^{11}.
-}
-]
-
-This is a candidate upper bound obtained from the F_1 neighborhood width and the 432 possible divisor centers.
-
----
-
-5. Important distinction
-
-The quantity
-
-[
-\boxed{10^8}
-]
-
-is not the final number of integers x satisfying all six filters.
-
-It is approximately the number of integer x's allowed by the F_1 condition around one admissible fourth-power center.
-
-The resulting bounds are therefore
-
-[
-\boxed{
-\text{per-center width}\approx8.05\times10^8
-}
-]
+x = (n + delta)^4
 
 and
 
-[
-\boxed{
-\text{432 centers}\quad\Longrightarrow\quad
-N<3.48\times10^{11}.
-}
-]
+(n + delta)^4 - n^4 ==
+    4*n^3*delta +
+    6*n^2*delta^2 +
+    4*n*delta^3 +
+    delta^4;
 
-The other filters F_2,F_3,F_5,F_6 impose additional restrictions, so the actual number of six-filter survivors can be substantially smaller.
+Therefore
 
-Thus 3.48\times10^{11} should be regarded as a conservative candidate upper bound, not as the exact count.
+Abs[x - n^4] <=
+    4*n^3*deltaMax +
+    6*n^2*deltaMax^2 +
+    4*n*deltaMax^3 +
+    deltaMax^4;
+
+Because
+
+10^600 <= x <= 10^604
+
+the fourth-power centers satisfy approximately
+
+10^150 <= n <= 10^151;
+
+Using the largest possible center,
+
+nMax = 10^151;
+
+gives the conservative radius
+
+R =
+    4*nMax^3*deltaMax +
+    6*nMax^2*deltaMax^2 +
+    4*nMax*deltaMax^3 +
+    deltaMax^4;
+
+Numerically,
+
+N[R, 30]
+
+gives approximately
+
+4.026343679*10^8
+
+Thus the number of possible integer "x" values around one fourth-power center is bounded by
+
+perCenterBound =
+    2*Floor[R] + 1;
+
+or approximately
+
+8.05268736*10^8
+
+Hence
+
+perCenterBound ~ 8.05*10^8.
+
+
+---
+
+3. The role of the random 300-digit "d"
+
+The fourth filter is now
+
+F4[x_] :=
+    Sum[
+        Sin[Pi*10^k*d*x^(-1/4)]^2,
+        {k, 0, 438}
+    ];
+
+Near a fourth-power center,
+
+x^(1/4) ~ n,
+
+so the argument of the sine is approximately
+
+Pi*10^k*d/n.
+
+The high-k terms force
+
+d/n
+
+to be extremely close to an integer at the corresponding decimal scales.
+
+Under the sufficiently tight simultaneous tolerance supplied by the filter, the relevant centers are therefore associated with divisors of "d":
+
+n | d
+
+with
+
+10^150 <= n <= 10^151.
+
+Define the number of relevant divisor centers by
+
+divisorCenters =
+    Select[
+        Divisors[d],
+        10^150 <= # <= 10^151 &
+    ];
+
+and
+
+D = Length[divisorCenters];
+
+Thus
+
+D =
+    Number of divisors n of d
+    satisfying 10^150 <= n <= 10^151.
+
+
+The value of "D" depends on the prime factorization of the particular 300-digit integer "d".
+
+---
+
+4. Candidate upper bound for arbitrary "d"
+
+The conservative candidate count is
+
+candidateBound =
+    D*(2*Floor[R] + 1);
+
+Since
+
+2*Floor[R] + 1 ~ 8.05268736*10^8,
+
+we obtain
+
+candidateBound ~
+    8.05268736*10^8*D.
+
+Therefore,
+
+N[candidateBound, 20]
+
+is approximately
+
+8.05268736*10^8*D
+
+where
+
+D = Length[
+    Select[
+        Divisors[d],
+        10^150 <= # <= 10^151 &
+    ]
+];
+
+---
+
+5. General result
+
+For an arbitrary 300-digit integer "d",
+
+10^299 <= d < 10^300
+
+the argument gives
+
+F[x] < 10^-5
+
+implies
+
+x^(1/4)
+
+is within approximately
+
+1.00658591973769*10^-445
+
+of an integer.
+
+Consequently, around each admissible fourth-power center, there are at most approximately
+
+8.05268736*10^8
+
+integer candidates.
+
+If
+
+D =
+    Length[
+        Select[
+            Divisors[d],
+            10^150 <= # <= 10^151 &
+        ]
+    ];
+
+then the conservative global candidate bound is
+
+candidateBound =
+    D*(2*Floor[R] + 1);
+
+or approximately
+
+candidateBound ~
+    8.05268736*10^8*D.
+
+Thus the general scaling is
+
+Ncandidate[d] <
+    8.05268736*10^8 *
+    NumberOfRelevantDivisors[d].
+
+The important distinction is that
+
+8.05268736*10^8
+
+is the per-center neighborhood size, whereas
+
+D
+
+depends on the particular 300-digit integer "d".
 
 
 ‎Sum[M,{x,10^600,10^604}]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br>
 <br>
 <br>
