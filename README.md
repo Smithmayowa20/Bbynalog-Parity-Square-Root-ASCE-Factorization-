@@ -125,6 +125,191 @@ M = Sin[(x + 1)/2 + Pi/2] E^-(5 * 10^6 F(x))^2
 ‎and d is a 300 digit semi-prime number.
 ‎‎<br>
 
+Cosindering the filter F(x), the number of x from 10^600 to 10^604 that have values lesser than 10^(-5) can be calculated thus;
+<br>
+
+
+We have
+
+\[
+F(x)=F_1+\cdots+F_6,
+\]
+
+with
+
+\[
+F_1(x)=\sum_{k=0}^{442}\sin^2(\pi10^kx^{1/4}).
+\]
+
+Since every term is nonnegative,
+
+\[
+F(x)<10^{-5}
+\quad\Longrightarrow\quad
+F_1(x)<10^{-5}.
+\]
+
+Therefore every individual term satisfies
+
+\[
+\sin^2(\pi10^{442}x^{1/4})<10^{-5}.
+\]
+
+Hence
+
+\[
+\left|\sin(\pi10^{442}x^{1/4})\right|<10^{-5/2}.
+\]
+
+Let
+
+\[
+\epsilon
+=
+\frac{\arcsin(10^{-5/2})}{\pi}
+=
+1.0065859197\times10^{-3}.
+\]
+
+Then
+
+\[
+\boxed{
+\left\|10^{442}x^{1/4}\right\|<\epsilon
+}
+\]
+
+and therefore
+
+\[
+\boxed{
+\left\|x^{1/4}\right\|
+<
+1.0065859197\times10^{-445}.
+}
+\]
+
+Now write
+
+\[
+x^{1/4}=n+\delta,
+\qquad |\delta|<1.0065859197\times10^{-445}.
+\]
+
+Then
+
+\[
+x=(n+\delta)^4.
+\]
+
+For small \(\delta\),
+
+\[
+(n+\delta)^4-n^4
+=
+4n^3\delta+6n^2\delta^2+4n\delta^3+\delta^4.
+\]
+
+The relevant \(n\)-range is
+
+\[
+10^{150}\le n\le10^{151}.
+\]
+
+Using the largest \(n=10^{151}\), the leading half-width is
+
+\[
+R
+=
+4(10^{151})^3
+(1.0065859197\times10^{-445}),
+\]
+
+giving
+
+\[
+\boxed{
+R\approx4.026343679\times10^8.
+}
+\]
+
+Thus, around each fourth power \(n^4\), the \(F_1\) condition permits at most approximately
+
+\[
+2R+1
+\approx
+8.05268736\times10^8
+\]
+
+integer \(x\)'s.
+
+But the six filters drastically reduce the centers
+
+The reciprocal filter
+
+\[
+F_4(x)
+=
+\sum_{k=0}^{438}
+\sin^2\left(\pi10^{k+300}x^{-1/4}\right)
+\]
+
+forces \(x^{1/4}\) to be extremely close to a divisor of \(10^{300}\).
+
+For \(d=10^{300}\),
+
+\[
+n\mid10^{300}
+\]
+
+and
+
+\[
+10^{150}\le n\le10^{151}.
+\]
+
+There are exactly
+
+\[
+\boxed{432}
+\]
+
+such divisors.
+
+Therefore the crude \(F_1\)-based candidate bound is
+
+\[
+432(2R+1),
+\]
+
+so
+
+\[
+432(8.05268736\times10^8)
+\approx
+\boxed{3.47876\times10^{11}}.
+\]
+
+So I want to correct one thing from the earlier discussion:
+
+\[
+\boxed{\text{\(10^8\) is the approximate width per fourth-power center, not the total six-filter count.}}
+\]
+
+The rigorous statement we established is approximately
+
+\[
+\boxed{8.05\times10^8\text{ possible integer }x\text{ per admissible divisor center}}
+\]
+
+and, with 432 divisor centers,
+
+\[
+\boxed{N_{\rm candidates}<3.48\times10^{11}}.
+\]
+
+The actual number satisfying all six filters and \(F(x)<10^{-5}\) can be substantially smaller. The \(10^8\) figure by itself is therefore a local neighborhood upper bound, not the final survivor count.
+
 
 ‎Sum[M,{x,10^600,10^604}]
 
