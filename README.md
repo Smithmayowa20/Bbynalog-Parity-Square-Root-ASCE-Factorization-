@@ -92,7 +92,7 @@ Sum[M,{x,2,M},{y,M + 1,d}] = Sum[2^(N())/(2^(f y) - 1),{y,M+1,d}]
 
 
 
-M =  E^-(5 * 10^6 F(x))
+M = E^(I x) E^-(5 * 10^6 F(x))^2
 ‎<br>
 
 ‎Let F(x) is the sum of 6 filter sine sums;
